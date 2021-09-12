@@ -1,0 +1,61 @@
+﻿@model Game
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/mystyle.css">
+</head>
+
+<body>
+    <header>
+        <p style="text-align:center;">Баллы: @Model._score</p>
+        <p align="center">@Model.question</p>
+    </header>
+    <main>
+    <form asp-action="Index" method="post">
+        <br />
+        <br />
+        <br />
+        <br />
+        <p align="center">
+            <button type="submit" value="Answer1" name="Title" style="margin-right: 150px; visibility: hidden;" id="Answer1">@ViewData["Answer1"]</button>
+            <button type="submit" value="Answer2" name="Title" style="visibility: hidden;" id="Answer2">@ViewData["Answer2"]</button>
+        </p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p align="center">
+            <button type="submit" value="Answer3" name="Title" style="margin-right: 150px;visibility:hidden;" id="Answer3">@ViewData["Answer3"]</button>
+            <button type="submit" value="Answer4" name="Title" style="visibility: hidden;" id="Answer4">@ViewData["Answer4"]</button>
+        </p>
+        <br />
+        <br />
+        <br />
+        <br />
+    </form>
+    </main>
+    <footer>
+        <div style="display: flex; justify-content: center; ">
+
+            <form asp-action="Index" method="post">
+
+                <select asp-for="maxSteps" id="Selector">
+                    <option>5</option>
+                    <option>10</option>
+                </select>
+
+                <input type="submit" value="Старт" id="@Model._startGame.ToString()" name="start" onclick="Start(this.id)" />
+            </form>
+            <button value="@Model._rightAnswer" id="FiftyButton" name="fiftyButton" onclick="Clicked()" style="visibility: collapse; margin-left: 10px; height: 60px;">50 / 50</button>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script type="text/javascript" src="\js\site.js" charset="utf-8"></script>
